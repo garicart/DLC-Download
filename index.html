@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>ac.tw｜DLC 下載中心</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans TC",
+        sans-serif;
+
+      background: #f5f7f4;
+      color: #26352e;
+    }
+
+    header {
+      height: 72px;
+      background: #ffffff;
+      border-bottom: 1px solid #dce3de;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 32px;
+
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #2c5f4b;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    nav a {
+      color: #52635a;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #2c5f4b;
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+
+      padding: 90px 24px 70px;
+
+      text-align: center;
+    }
+
+    .hero .tag {
+      display: inline-block;
+
+      padding: 7px 14px;
+      border-radius: 999px;
+
+      background: #dfece5;
+      color: #2c5f4b;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 8vw, 72px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 0 auto;
+
+      color: #68766f;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+
+      padding: 0 24px 80px;
+    }
+
+    .section-title {
+      margin-bottom: 24px;
+    }
+
+    .section-title h2 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #78847e;
+    }
+
+    .dlc-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+      gap: 24px;
+    }
+
+    .dlc-card {
+      background: #ffffff;
+
+      border: 1px solid #dce3de;
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 8px 30px rgba(35, 55, 45, 0.06);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .dlc-card:hover {
+      transform: translateY(-4px);
+
+      box-shadow:
+        0 14px 36px rgba(35, 55, 45, 0.11);
+    }
+
+    .dlc-cover {
+      height: 180px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #dcece2,
+          #b8d7c3
+        );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #2c5f4b;
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .dlc-content {
+      padding: 24px;
+    }
+
+    .dlc-content h3 {
+      font-size: 23px;
+      margin-bottom: 10px;
+    }
+
+    .dlc-content p {
+      color: #69766f;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .info {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+
+      margin-bottom: 22px;
+    }
+
+    .info span {
+      padding: 6px 10px;
+
+      background: #f0f4f1;
+      border-radius: 8px;
+
+      color: #617069;
+      font-size: 13px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .button {
+      flex: 1;
+
+      border: none;
+      border-radius: 10px;
+
+      padding: 12px 16px;
+
+      font-size: 15px;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      text-align: center;
+      text-decoration: none;
+
+      transition: 0.2s;
+    }
+
+    .primary {
+      background: #2c5f4b;
+      color: white;
+    }
+
+    .primary:hover {
+      background: #234c3d;
+    }
+
+    .secondary {
+      background: #edf2ef;
+      color: #395348;
+    }
+
+    .secondary:hover {
+      background: #e1e9e4;
+    }
+
+    .notice {
+      margin-top: 50px;
+
+      padding: 22px;
+
+      background: #fffdf4;
+      border: 1px solid #eee6c8;
+      border-radius: 16px;
+
+      color: #716b51;
+
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    footer {
+      background: #26352e;
+      color: #dce5df;
+
+      text-align: center;
+
+      padding: 35px 20px;
+
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 0 18px;
+      }
+
+      nav {
+        gap: 12px;
+      }
+
+      nav a:nth-child(2) {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 65px;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 導覽列 -->
+
+  <header>
+    <div class="logo">ac.tw</div>
+
+    <nav>
+      <a href="#home">首頁</a>
+      <a href="#dlc">DLC</a>
+      <a href="#about">關於</a>
+    </nav>
+  </header>
+
+
+  <!-- 首頁 -->
+
+  <main id="home">
+
+    <section class="hero">
+
+      <div class="tag">
+        DLC DOWNLOAD CENTER
+      </div>
+
+      <h1>
+        探索新的內容
+      </h1>
+
+      <p>
+        歡迎來到 ac.tw DLC 下載中心。
+        在這裡查看、管理與下載
+        雲城市所提供的 DLC 內容。
+      </p>
+
+    </section>
+
+
+    <!-- DLC -->
+
+    <section
+      id="dlc"
+      class="container"
+    >
+
+      <div class="section-title">
+
+        <h2>DLC</h2>
+
+        <p>
+          選擇你想要的內容。
+        </p>
+
+      </div>
+
+
+      <div class="dlc-grid">
+
+
+        <!-- DLC 1 -->
+
+        <article class="dlc-card">
+
+          <div class="dlc-cover">
+            DLC 01
+          </div>
+
+          <div class="dlc-content">
+
+            <h3>
+              雲城市：島嶼擴充包
+            </h3>
+
+            <p>
+              擴充你的島嶼世界，
+              加入新的區域、物件與遊戲內容。
+            </p>
+
+            <div class="info">
+
+              <span>
+                Version 1.0
+              </span>
+
+              <span>
+                128 MB
+              </span>
+
+            </div>
+
+            <div class="buttons">
+
+              <a
+                href="#"
+                class="button primary"
+                onclick="downloadDLC('雲城市：島嶼擴充包')"
+              >
+                下載
+              </a>
+
+              <a
+                href="#"
+                class="button secondary"
+                href="#"
+                onclick="showInfo('雲城市：島嶼擴充包')"
+              >
+                詳情
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- DLC 2 -->
+
+        <article class="dlc-card">
+
+          <div class="dlc-cover">
+            DLC 02
+          </div>
+
+          <div class="dlc-content">
+
+            <h3>
+              雲城市：新地圖
+            </h3>
+
+            <p>
+              解鎖新的地圖內容，
+              探索更多城市與島嶼區域。
+            </p>
+
+            <div class="info">
+
+              <span>
+                Version 1.0
+              </span>
+
+              <span>
+                256 MB
+              </span>
+
+            </div>
+
+            <div class="buttons">
+
+              <a
+                href="#"
+                class="button primary"
+                onclick="downloadDLC('雲城市：新地圖')"
+              >
+                下載
+              </a>
+
+              <a
+                href="#"
+                class="button secondary"
+                onclick="showInfo('雲城市：新地圖')"
+              >
+                詳情
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- DLC 3 -->
+
+        <article class="dlc-card">
+
+          <div class="dlc-cover">
+            DLC 03
+          </div>
+
+          <div class="dlc-content">
+
+            <h3>
+              島嶼編輯器擴充
+            </h3>
+
+            <p>
+              為你的島嶼編輯器加入
+              更多地形與自訂功能。
+            </p>
+
+            <div class="info">
+
+              <span>
+                Version 1.0
+              </span>
+
+              <span>
+                64 MB
+              </span>
+
+            </div>
+
+            <div class="buttons">
+
+              <a
+                href="#"
+                class="button primary"
+                onclick="downloadDLC('島嶼編輯器擴充')"
+              >
+                下載
+              </a>
+
+              <a
+                href="#"
+                class="button secondary"
+                onclick="showInfo('島嶼編輯器擴充')"
+              >
+                詳情
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+
+      <div class="notice">
+
+        <strong>注意：</strong><br>
+
+        此網站目前為 ac.tw 的第一版 DLC
+        下載中心介面。
+        上方下載按鈕目前僅作為示範，
+        尚未連接實際 DLC 檔案。
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- 關於 -->
+
+  <footer id="about">
+
+    <strong>ac.tw</strong><br>
+
+    DLC Download Center<br>
+
+    © 2026 ac.tw / 雲城市
+
+  </footer>
+
+
+  <script>
+
+    function downloadDLC(name) {
+
+      alert(
+        name +
+        "\n\n目前尚未提供實際下載檔案。"
+      );
+
+    }
+
+
+    function showInfo(name) {
+
+      alert(
+        name +
+        "\n\nDLC 詳情頁面尚未建立。"
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>
